@@ -18,11 +18,11 @@ app.use(session({secret: 'lele'}));
 app.use(cookieParser());
 
 // Middleware pour autoriser les requêtes CORS
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+// app.use(cors({
+//   origin: 'http://localhost:5173',
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
 app.use(cors({
   origin: 'https://articles-dev.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
