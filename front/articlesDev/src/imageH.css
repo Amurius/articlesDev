@@ -1,0 +1,33 @@
+#divImgHhaut{
+  background-color: grey;
+  border: 1px solid black;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+#divImgHmilieu{
+  background-color: grey;
+  border: 1px solid black;
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+#divImgHbas{
+  background-color: grey;
+  border: 1px solid black;
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}

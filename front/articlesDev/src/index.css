@@ -1,0 +1,89 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+
+#root {
+  height: 100vh;
+}
+
+#content {
+  height: 100%;
+  background-color: rgb(240, 240, 255);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#conteneurFormLogin {
+  width: 14%;
+  padding: 1.5%;
+
+}
+
+#conteneurFormSignIn {
+  width: 20%;
+  padding: 2%;
+}
+
+#conteneurFormLogin,
+#conteneurFormSignIn {
+  background-color: rgb(117, 39, 190);
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  position: absolute;
+  margin-top: 5%;
+}
+
+#conteneurLogin,
+#conteneurSignIn {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+#login {
+  padding: 8%;
+}
+
+#login,
+#signIn {
+  color: white;
+  text-align: center;
+}
+
+#formLogin,
+#formSignIn {
+  font-weight: bold;
+  color: white;
+  padding: 5% 10% 8%;
+  ;
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="submit"] {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 4px 12px;
+  max-width: 12rem;
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  font-size: 18px;
+  align-self: center;
+}

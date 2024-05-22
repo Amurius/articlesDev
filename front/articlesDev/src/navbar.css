@@ -1,0 +1,31 @@
+.hlNav {
+  text-decoration: none;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 12px;
+}
+
+#NavBar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(57, 9, 110);
+  height: 9%;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+#pageTitre {
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 2%;
+  align-self: center;
+}
+
+#conteneurLiens {
+  display: flex;
+  align-items: center;
+}

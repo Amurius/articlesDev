@@ -1,0 +1,29 @@
+#divChart {
+  margin-top: 6rem;
+  position: absolute;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(240, 240, 255);
+}
+
+#myChart {
+  height: 90vh !important;
+}
+
+#divArticlesUser {
+  margin-top: 3rem;
+
+}
+
+#divArticles {
+  display: flex;
+  gap: 5%;
+}
+
+#divBtnSuppr {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
