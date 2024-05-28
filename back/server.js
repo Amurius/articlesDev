@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+// const session = require('express-session');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const sessionRoute = require('./routes/sessionRoute');
@@ -12,22 +12,23 @@ const fileRoute = require('./routes/fileRoute');
 const app = express();
 
 // Middleware pour les sessions
-app.use(session({secret: 'lele'}));
+// app.use(session({secret: 'lele'}));
 
 // Middleware pour les cookies
 app.use(cookieParser());
 
 // Middleware pour autoriser les requêtes CORS
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 // app.use(cors({
-//   origin: 'http://localhost:5173',
+//   origin: 'https://articles-dev.vercel.app',
 //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 //   allowedHeaders: ['Content-Type', 'Authorization'],
 // }));
-app.use(cors({
-  origin: 'https://articles-dev.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
 
 app.use(express.json());
 

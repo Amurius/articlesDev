@@ -78,7 +78,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: 45% 45%;
-  gap: 5rem;
+  gap: 3rem;
   padding-top: 4rem;
 }
 
@@ -123,6 +123,6 @@
   gap: 3rem;
 }
 
-#submit{
+.submit{
   margin: 5% 45%;
 }

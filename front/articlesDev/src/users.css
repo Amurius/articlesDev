@@ -8,18 +8,28 @@
   background-color: rgb(240, 240, 255);
 }
 
-#myChart {
+#chart {
   height: 90vh !important;
+  width: 40%;
 }
 
 #divArticlesUser {
   margin-top: 3rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 
+#divArticlesUser>h1 {
+  margin-bottom: 2rem;
 }
 
 #divArticles {
   display: flex;
-  gap: 5%;
+  gap: 4%;
+  justify-content: center;
+  width: 70%;
 }
 
 #divBtnSuppr {
@@ -27,3 +37,10 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+#divBtnModif {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+

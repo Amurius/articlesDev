@@ -87,3 +87,29 @@ input[type="submit"] {
   font-size: 18px;
   align-self: center;
 }
+
+.btnLink{
+  font-family: 'Courier New', Courier, monospace;
+  padding: 1px 6px;
+  max-width: 12rem;
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  font-size: 16px;
+  align-self: center;
+  border: 2px solid black;
+}
+
+.btnBtn{
+  font-family: 'Courier New', Courier, monospace;
+  max-width: 12rem;
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  font-size: 16px;
+  align-self: center;
+}
+.btnBtn:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}

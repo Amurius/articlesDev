@@ -4,15 +4,30 @@ import './admin.css'
 function Admin() {
   const [users, setUsers] = useState()
   const [articles, setArticles] = useState()
+  const [admin, setAdmin] = useState(null);
   useEffect(() => {
     fetch('http://localhost:3000/api/users/getusers').then((response) => response.json()).then((users) => {
       setUsers(users.users);
       setArticles(users.usersArticle);
    })
   }, [])
-
+  useEffect(() => {
+    fetch('http://localhost:3000/api/session/user', {
+      method: "GET",
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    }).then((response) => response.json()).then((compte) => {
+        if (compte.admin === 1){
+          setAdmin(compte.admin);
+        }
+        else {
+          setAdmin(null)
+        }
+    })
+  },[])
   return (
     <>
+    { admin === 1 ?
       <div id='conteneurAdminUsers'>
         <h1>Voici tous les utilisateurs ayant écrit des articles</h1>
         <div id='conteneurUsers'>
@@ -55,6 +70,11 @@ function Admin() {
           </div>
         </div>
       </div>
+      :
+      <>
+
+      </>
+    }
     </>
   )
 }

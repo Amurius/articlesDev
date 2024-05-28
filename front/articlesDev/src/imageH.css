@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   height: 400px;
+  width: 100%;
 }
 #divImgHmilieu{
   background-color: grey;
@@ -19,6 +20,7 @@
   justify-content: center;
   align-items: center;
   height: 400px;
+  width: 100%;
 }
 #divImgHbas{
   background-color: grey;
@@ -30,4 +32,5 @@
   justify-content: center;
   align-items: center;
   height: 400px;
+  width: 100%;
 }

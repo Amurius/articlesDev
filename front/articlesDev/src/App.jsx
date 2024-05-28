@@ -10,15 +10,18 @@ import Texte4Images1H from './Texte4Images1H';
 import Accueil from './Accueil';
 import Admin from './Admin';
 import User from './User';
+import Modification from './Modification';
+import { useState } from 'react';
 
 function App() {
+  const [variable, setVariables] = useState()
 
   return (
     <>
-      <NavBar />
+      <NavBar variable={variable} setVariables={setVariables}/>
       <div id='content'>
         <Routes>
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login setVariables={setVariables}/>} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/Accueil' element={<Accueil />} />
           <Route path='/CreateArticle' element={<CreateArticle />} />
@@ -27,6 +30,7 @@ function App() {
           <Route path='/CreateArticle/Texte_4_Images_1_H' element={<Texte4Images1H />} />
           <Route path='/server/admin/inprogress' element={<Admin />} />
           <Route path='/users/:user' element={<User />} />
+          <Route path='/user/modification/:articleID' element={<Modification />} />
         </Routes>
       </div>
     </>

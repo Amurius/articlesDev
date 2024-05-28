@@ -32,40 +32,40 @@ function Accueil() {
         div.appendChild(h2);
         var div2 = document.createElement('div');
         div2.className = 'divTexteArticle';
-        if (article.image != null){
+        if (article.image != null) {
           for (var i = 0; i < article.texte.length; i++) {
             var p = document.createElement('p');
             p.innerText = article.texte[i]
             p.className = "texte" + i
             div2.appendChild(p)
           }
-          if (article.image.placement == 'gauche'){
+          if (article.image.placement == 'gauche') {
             var img = document.createElement('img');
             img.className = 'imgImageArtilcleVG'
             img.src = article.image.lien
             div2.appendChild(img)
-          } else if(article.image.placement == 'droite'){
+          } else if (article.image.placement == 'droite') {
             var img = document.createElement('img');
             img.className = 'imgImageArtilcleVD'
             img.src = article.image.lien
             div2.appendChild(img)
-          } else if (article.image.placement == 'haut'){
+          } else if (article.image.placement == 'haut') {
             var img = document.createElement('img');
             img.className = 'imgImageArtilcleHTop'
             img.src = article.image.lien
             div2.appendChild(img)
-          } else if(article.image.placement == 'milieu'){
+          } else if (article.image.placement == 'milieu') {
             var img = document.createElement('img');
             img.className = 'imgImageArtilcleHMiddle'
             img.src = article.image.lien
             div2.appendChild(img)
-          }else if(article.image.placement == 'bas'){
+          } else if (article.image.placement == 'bas') {
             var img = document.createElement('img');
             img.className = 'imgImageArtilcleHBottom'
             img.src = article.image.lien
             div2.appendChild(img)
           }
-        }else {
+        } else {
           for (var i = 0; i < article.texte.length; i++) {
             var p = document.createElement('p');
             p.innerText = article.texte[i]
@@ -77,7 +77,7 @@ function Accueil() {
         var divUserDate = document.createElement('div');
         divUserDate.id = "divUserDate";
         var texteUserDate = document.createElement('p');
-        texteUserDate.innerText = "Article créé par " + article.user + " le " + article.date.toString().substring(0,10)
+        texteUserDate.innerText = "Article publié par " + article.user + " le " + article.date.toString().substring(0, 10)
         divUserDate.appendChild(texteUserDate);
         div.appendChild(divUserDate);
         document.getElementById('conteneurArticles').appendChild(div)
@@ -111,40 +111,40 @@ function Accueil() {
           div.appendChild(h2);
           var div2 = document.createElement('div');
           div2.className = 'divTexteArticle';
-          if (article.image != null){
+          if (article.image != null) {
             for (var i = 0; i < article.texte.length; i++) {
               var p = document.createElement('p');
               p.innerText = article.texte[i]
               p.className = "texte" + i
               div2.appendChild(p)
             }
-            if (article.image.placement == 'gauche'){
+            if (article.image.placement == 'gauche') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleVG'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if(article.image.placement == 'droite'){
+            } else if (article.image.placement == 'droite') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleVD'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if (article.image.placement == 'haut'){
+            } else if (article.image.placement == 'haut') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHTop'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if(article.image.placement == 'milieu'){
+            } else if (article.image.placement == 'milieu') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHMiddle'
               img.src = article.image.lien
               div2.appendChild(img)
-            }else if(article.image.placement == 'bas'){
+            } else if (article.image.placement == 'bas') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHBottom'
               img.src = article.image.lien
               div2.appendChild(img)
             }
-          }else {
+          } else {
             for (var i = 0; i < article.texte.length; i++) {
               var p = document.createElement('p');
               p.innerText = article.texte[i]
@@ -156,7 +156,7 @@ function Accueil() {
           var divUserDate = document.createElement('div');
           divUserDate.id = "divUserDate";
           var texteUserDate = document.createElement('p');
-          texteUserDate.innerText = "Article créé par " + article.user + " à " + article.date
+          texteUserDate.innerText = "Article publié par " + article.user + " le " + article.date.toString().substring(0, 10)
           divUserDate.appendChild(texteUserDate);
           div.appendChild(divUserDate);
           document.getElementById('conteneurArticles').appendChild(div)
@@ -176,40 +176,40 @@ function Accueil() {
           div.appendChild(h2);
           var div2 = document.createElement('div');
           div2.className = 'divTexteArticle';
-          if (article.image != null){
+          if (article.image != null) {
             for (var i = 0; i < article.texte.length; i++) {
               var p = document.createElement('p');
               p.innerText = article.texte[i]
               p.className = "texte" + i
               div2.appendChild(p)
             }
-            if (article.image.placement == 'gauche'){
+            if (article.image.placement == 'gauche') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleVG'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if(article.image.placement == 'droite'){
+            } else if (article.image.placement == 'droite') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleVD'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if (article.image.placement == 'haut'){
+            } else if (article.image.placement == 'haut') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHTop'
               img.src = article.image.lien
               div2.appendChild(img)
-            } else if(article.image.placement == 'milieu'){
+            } else if (article.image.placement == 'milieu') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHMiddle'
               img.src = article.image.lien
               div2.appendChild(img)
-            }else if(article.image.placement == 'bas'){
+            } else if (article.image.placement == 'bas') {
               var img = document.createElement('img');
               img.className = 'imgImageArtilcleHBottom'
               img.src = article.image.lien
               div2.appendChild(img)
             }
-          }else {
+          } else {
             for (var i = 0; i < article.texte.length; i++) {
               var p = document.createElement('p');
               p.innerText = article.texte[i]
@@ -221,7 +221,7 @@ function Accueil() {
           var divUserDate = document.createElement('div');
           divUserDate.id = "divUserDate";
           var texteUserDate = document.createElement('p');
-          texteUserDate.innerText = "Article créé par " + article.user + " à " + article.date
+          texteUserDate.innerText = "Article publié par " + article.user + " le " + article.date.toString().substring(0, 10)
           divUserDate.appendChild(texteUserDate);
           div.appendChild(divUserDate);
           document.getElementById('conteneurArticles').appendChild(div)
@@ -230,18 +230,22 @@ function Accueil() {
       }
     })
   }
-  
+
   useEffect(() => {
-    fetch('http://localhost:3000/api/session/connection').then((response) => response.json()).then((user) => {
-      console.log(user)
-      if (user.sessionuser != null){
-        console.log(user.sessionuser);
+    fetch('http://localhost:3000/api/session/user', {
+      method: "GET",
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    }).then((response) => response.json()).then((user) => {
+      if (user.admin === 1) {
+      }
+      if (user.id != null) {
       }
       else {
         console.log('invité')
       }
     })
-  })
+  }, [])
   return (
     <>
       <div id='conteneurAccueil'>

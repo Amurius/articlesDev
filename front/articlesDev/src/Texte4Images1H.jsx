@@ -7,6 +7,8 @@ export default function Temp3() {
   const [template, setTemplate] = useState();
   const [file, setFile] = useState();
   const [position, setPosition] = useState();
+  const [utilisateur, setUtilisateur] = useState();
+
   useEffect(() => {
     var templateNom = document.location.href.substring(document.location.href.lastIndexOf("/") + 1);
     fetch('http://localhost:3000/api/templates/gettemplate', {
@@ -16,13 +18,13 @@ export default function Temp3() {
     }
     ).then((response) => response.json()).then(respTemplate => {
       setTemplate(respTemplate)
-      document.getElementById('formArticle').innerHTML = '';
-      var doc = document.getElementById("formArticle");
+      document.getElementById('displayTemplate').innerHTML = '';
+      var doc = document.getElementById("displayTemplate");
       var h1 = document.createElement("h1");
       h1.innerText = "Titre de votre article"
       var input = document.createElement("input");
       input.type = "text";
-      input.id = "titre";
+      input.className = "titre";
       var h3 = document.createElement("h3");
       h3.innerText = "Zones de texte : 1 paragraphe par zone de saisie ";
       doc.appendChild(h1);
@@ -43,14 +45,14 @@ export default function Temp3() {
       }
       doc.appendChild(div)
       var div3 = document.createElement('div')
-      div3.id = "divValidation"
+      div3.className = "divValidation"
       var div4 = document.createElement('div')
-      div4.id = "divLangage"
+      div4.className = "divLangage"
       var label = document.createElement('label')
-      label.id = "sujet"
+      label.className = "sujet"
       label.innerText = "Quel est le sujet de l'article ?"
       var select = document.createElement('select')
-      select.id = "langage"
+      select.className = "langage"
       select.name = "langage"
       respTemplate["langages"].map((langue) => {
         var option = document.createElement('option')
@@ -65,14 +67,28 @@ export default function Temp3() {
     })
   }, []);
 
+  useEffect(() => {
+    fetch('http://localhost:3000/api/session/user', {
+      method: "GET",
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    }).then((response) => response.json()).then((compte) => {
+      setUtilisateur(compte)
+    })
+  }, [])
+
   const Submit = (e) => {
     e.preventDefault();
-    var titre = document.getElementById('titre').value
-    const langage = document.getElementById('langage').value
+    var titre = document.querySelector('.titre').value
+    const langage = document.querySelector('.langage').value
     var article = new Array();
     var texte = new Array();
     // doit récupérer l'id de la personne connecté qui écrit
-    var userID = null
+    if (utilisateur) {
+      var userID = utilisateur.id
+    } else {
+      var userID = null
+    }
 
     for (var i = 0; i < template.template[0].te_nbr_texte; i++) {
       let texteID = 'texte' + i
@@ -103,7 +119,7 @@ export default function Temp3() {
         axios.post(url, data, config).then((response) => {
           console.log(response.data)
         });
-        alert("vous venez d'ajouter le " + respArticle.ArticleID + "eme article du site ! Merci de votre participation :)")
+        alert("vous venez d'ajouter le " + respArticle.articleID + "eme article du site ! Merci de votre participation :)")
       }
       else if (respArticle.articleID === "duplicata") {
         alert("Un article du même nom à déjà été créer veuillez choisir un autre nom !")
@@ -127,20 +143,20 @@ export default function Temp3() {
       <div id='contenuCreate'>
         <CreateArticle />
         <div id="conteneurTemplate">
-        <div className="divPositionSelector">
+          <div className="divPositionSelector">
             <label>Position de l'image</label>
             <select id="positionSelector" onChange={positionChange}>
               <option value="haut">Haut</option>
               <option value="milieu">Milieu</option>
               <option value="bas">Bas</option>
             </select>
-            </div>
-          <form onSubmit={Submit} id="formulaire">
-            <div id="formArticle">
+          </div>
+          <form onSubmit={Submit} className="formulaireFullText">
+            <div className="formArticle" id="displayTemplate">
 
             </div>
             <div id="divInputFile"><label>Choisissez votre image ici :</label><input type="file" id="inputFile" onChange={fileChange}></input></div>
-            <input type="submit" value="Submit" id="submit"></input>
+            <input type="submit" value="Submit" className="submit"></input>
           </form>
         </div>
       </div>

@@ -1,0 +1,26 @@
+#formModif {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  margin-top: 5rem;
+  justify-content: center;
+  background-color: rgb(240, 240, 255);
+}
+
+.formArticle>h1 {
+  margin: 8% 0;
+}
+
+.divTextes>textarea {
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  padding: 0;
+}
+
+#divModif {
+  width: 45%;
+}
+#modifPosition{
+  left: 0 !important;
+  z-index: 1;
+}

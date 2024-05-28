@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function Login() {
+export default function Login({setVariables}) {
   const navigate = useNavigate();
   const [formulaire, setFormulaire] = useState({
     email: "",
@@ -21,9 +21,11 @@ export default function Login() {
     fetch("http://localhost:3000/api/session/connection", {
       method: "POST",
       headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify(formulaire)
     }).then(response => response.json()).then(data => {
       if (data.success == "loggedin") {
+        setVariables(data)
         navigate(data.redirect);
       }
     });

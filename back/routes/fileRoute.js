@@ -13,5 +13,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/files/uploadfile', upload.single('file'), fileController.uploadFile)
+router.post('/files/updatefile', upload.single('file'), fileController.updateFile)
 
 module.exports = router;

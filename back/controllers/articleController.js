@@ -84,7 +84,7 @@ exports.getArticles = async (req, res) => {
     } else {
       var query = await conn.query('SELECT la_id from langages WHERE la_nom = ?;', [req.body.langue]);
       la_id = query[0].la_id;
-      query = await conn.query('SELECT ar_titre,ar_us_id,ar_id,te_nbr_images FROM articles inner join templates on ar_te_id = te_id WHERE ar_la_id = ?;', [la_id]);
+      query = await conn.query('SELECT ar_titre,ar_us_id,ar_id,ar_date,te_nbr_images FROM articles inner join templates on ar_te_id = te_id WHERE ar_la_id = ?;', [la_id]);
       const nombre = await conn.query('SELECT COUNT(*) as nbRequest FROM articles WHERE ar_la_id = ?;', [la_id]);
       var users = await conn.query('SELECT us_prenom, us_id from users;');
       var queryImage = await conn.query("SELECT im_lien, im_placement, im_ar_id from images");
@@ -175,6 +175,60 @@ exports.deleteArticle = async (req, res) => {
       const images = await conn.query("DELETE FROM images WHERE im_ar_id = ?", [arID])
     }
     const article = await conn.query("DELETE from articles where ar_titre = ?",[articleTitre])
+    res.status(200).json({success : true})
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({success : false})
+  }
+  finally {
+    if (conn) {
+      conn.release();
+    }
+  }
+}
+
+exports.getArticleModif = async (req,res) => {
+  let conn 
+  var articleTitre = req.body.articleNom.replaceAll('_',' ')
+  try {
+    conn = await db.pool.getConnection();
+    const query = await conn.query("SELECT * FROM articles WHERE ar_titre = ?", [articleTitre])
+    const template = await conn.query("SELECT * FROM templates WHERE te_id = ?", [query[0].ar_te_id])
+    const textes = await conn.query("SELECT * FROM textes WHERE txt_ar_id = ?", [query[0].ar_id])
+    const image = await conn.query("SELECT * FROM images WHERE im_ar_id = ?", [query[0].ar_id])
+    const langage = await conn.query("SELECT * from langages")
+    res.status(200).json({"article":query, "textes":textes, "image":image, "template" : template, "langage" : langage});
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({success : false})
+  }
+  finally {
+    if (conn) {
+      conn.release();
+    }
+  }
+}
+
+exports.updateArticle = async (req,res) => {
+  let conn
+  const titre = req.body.article[0].titre;
+  const ar_id = req.body.article[0].articleID;
+  const langage = req.body.article[0].langage;
+  const contenu = req.body.article[0].contenu;
+  try {
+    conn = await db.pool.getConnection()
+    var query = await conn.query("SELECT la_id FROM langages WHERE la_nom = ?", [langage])
+    var la_id = query[0].la_id;
+    const updateArticle = await conn.query("UPDATE articles SET ar_titre = ?, ar_la_id = ? WHERE ar_id = ?; ", [titre, la_id, ar_id])
+    for ( var i=0; i<contenu.length; i++) {
+      if (contenu[i].txt_id === null ){
+        var insertTexte = await conn.query("INSERT INTO textes (txt_contenu,txt_ar_id) VALUES ( ?, ? )", [contenu[i].content, ar_id]);
+      }else {
+        var updateTextes = await conn.query("UPDATE textes SET txt_contenu = ? WHERE txt_id = ?", [contenu[i].content, contenu[i].txt_id])
+      }
+    }
     res.status(200).json({success : true})
   }
   catch (err) {

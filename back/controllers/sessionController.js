@@ -1,5 +1,8 @@
 const db = require('../databases/database.js');
 const pswHash = require('password-hash');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 
 exports.sessionStart = async (req, res) => {
   let conn;
@@ -14,15 +17,14 @@ exports.sessionStart = async (req, res) => {
     var us_admin = query[0].us_admin;
     if (us_email == email) {
       if (pswHash.verify(password, us_password)) {
-        const user = {
-          prenom: us_prenom,
-          email: us_email,
-          id: us_id,
-          admin : us_admin,
-        }
-        req.session.user = user;
-        console.log(req.session);
-        res.status(200).json({ success: 'loggedin', redirect: '/accueil' });
+        var token = jwt.sign({'id' : us_id, 'email': us_email, 'prenom' : us_prenom, 'admin': us_admin}, process.env.JWT_KEY, {expiresIn: '1h'} )
+        res.status(200).cookie('token',token, {
+          expires: new Date(Date.now() +  24 * 60 * 60 * 1000),
+          httpOnly: true,
+          path: "/",
+          secure: false,
+          sameSite: 'Lax'
+      }).json({'success': "loggedin" , redirect : "../accueil"})
       } else {
         res.status(401).json({ success: 'wrongpwd' });
       }
@@ -43,16 +45,24 @@ exports.sessionStart = async (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-  console.log(req.session.user);
-  var sessionuser = req.session.user;
-  res.status(200).json({ "sessionuser": sessionuser });
+  var token = req.cookies.token
+  if(token){
+    if (jwt.verify(token, process.env.JWT_KEY)) {    
+      var decoded = jwt.decode(token)
+      var boolAdmin = decoded.admin
+      res.status(200).json({admin : boolAdmin, id : decoded.id, prenom : decoded.prenom});
+    } else {
+      res.status(404).json({error: 'Tampered Token'});
+    }
+  }
+
 };
 
 // Logout page 
 exports.sessionLogout = (req, res) => {
   try {
-    req.session.destroy()
-    res.status(302).redirect('/login');
+    res.clearCookie('token')
+    res.status(200).json({redirect : '../login'});
   }
   catch (err) {
     console.error('Erreur lors de la destruction de la session:', err);

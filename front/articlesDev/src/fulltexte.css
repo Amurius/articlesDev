@@ -1,4 +1,4 @@
-#titre {
+.titre {
   width: 99%;
   align-self: center;
   height: 36px;
@@ -6,24 +6,24 @@
   font-weight: bold;
 }
 
-#formArticle>h1 {
+.formArticle>h1 {
   text-align: center;
   padding-bottom: 5%;
 }
 
-#formArticle {
+.formArticle {
   display: flex;
   flex-direction: column;
   height: fit-content;
 }
 
-#formArticle>h3 {
+.formArticle>h3 {
   padding: 3% 0;
 }
 
-#divTextes {
+.divTextes {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 48.5% 48.5%;
   gap: 3%;
   margin-bottom: 8%;
 }
@@ -34,22 +34,22 @@
   resize: none;
 }
 
-#sujet {
+.sujet {
   padding: 5% 0;
 }
 
-#langage {
+.langage {
   width: 70%;
   margin-bottom: 10%;
   align-self: center;
 }
 
-#divValidation {
+.divValidation {
   display: flex;
   justify-content: space-evenly;
 }
 
-#divLangage {
+.divLangage {
   display: flex;
   flex-direction: column;
 }
